@@ -6,9 +6,9 @@ class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.tealAccent,
+      backgroundColor: Colors.teal,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.tealAccent,
+        backgroundColor: Colors.teal,
         child: Icon(Icons.add),
         onPressed: () {
           showModalBottomSheet(
@@ -35,7 +35,7 @@ class TasksScreen extends StatelessWidget {
                 CircleAvatar(
                   child: Icon(
                     Icons.list,
-                    color: Colors.tealAccent,
+                    color: Colors.teal,
                     size: 35.0,
                   ),
                   backgroundColor: Colors.white,
