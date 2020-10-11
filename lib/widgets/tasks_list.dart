@@ -4,28 +4,27 @@ import 'package:todo_app/widgets/task_tile.dart';
 
 class TasksList extends StatefulWidget {
 
+  final List<Task> tasksList;
+
+  TasksList({this.tasksList});
+
   @override
   _TasksListState createState() => _TasksListState();
 }
 
 class _TasksListState extends State<TasksList> {
 
-  List<Task> tasks = [
-    Task(taskName: 'Study Flutter', isCompleted: false),
-    Task(taskName: 'Study Android', isCompleted: false),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(itemBuilder: (context, index){
-      return TaskTile(taskName: tasks[index].taskName,
-        isCompleted: tasks[index].isCompleted,
+      return TaskTile(taskName: widget.tasksList[index].taskName,
+        isCompleted: widget.tasksList[index].isCompleted,
         toggleCallback: (bool isChecked){
           setState(() {
-            tasks[index].toggleCompleted();
+            widget.tasksList[index].toggleCompleted();
           });
         });
     },
-    itemCount: tasks.length,);
+    itemCount: widget.tasksList.length,);
   }
 }

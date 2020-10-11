@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/model/task.dart';
 import 'package:todo_app/views/add_task_screen.dart';
 import 'package:todo_app/widgets/tasks_list.dart';
 
-class TasksScreen extends StatelessWidget {
+class TasksScreen extends StatefulWidget {
+
+  @override
+  _TasksScreenState createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  List<Task> tasks = [
+    Task(taskName: 'Study Flutter', isCompleted: false),
+    Task(taskName: 'Study Android', isCompleted: false),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +29,12 @@ class TasksScreen extends StatelessWidget {
                     child: Container(
                       padding: EdgeInsets.only(
                           bottom: MediaQuery.of(context).viewInsets.bottom),
-                      child: AddTaskScreen(),
+                      child: AddTaskScreen(addTaskCallback: (newTaskName){
+                        setState(() {
+                          tasks.add(Task(taskName: newTaskName));
+                        });
+                        Navigator.pop(context);
+                      },),
                     ),
                   ),
               isScrollControlled: true);
@@ -71,7 +88,7 @@ class TasksScreen extends StatelessWidget {
                     topLeft: Radius.circular(24.0),
                     topRight: Radius.circular(24.0),
                   )),
-              child: TasksList(),
+              child: TasksList(tasksList: tasks,),
             ),
           ),
         ],
