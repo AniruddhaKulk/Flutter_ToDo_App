@@ -17,7 +17,10 @@ class TasksList extends StatelessWidget {
                 task.isCompleted,
                 toggleCallback: (bool isChecked) {
                     data.toggleCompletion(task);
-                });
+                },
+                longPressCallback: (){
+                  data.deleteTask(index);
+                },);
           },
           itemCount: data.numberOfTasks,
         );

@@ -7,8 +7,9 @@ import 'package:todo_app/model/task.dart';
 class TaskData extends ChangeNotifier{
 
   List<Task> _tasks = [
-    Task(taskName: 'Study Flutter', isCompleted: false),
-    Task(taskName: 'Study Android', isCompleted: false),
+    Task(taskName: 'Buy milk', isCompleted: false),
+    Task(taskName: 'Buy eggs', isCompleted: false),
+    Task(taskName: 'Buy bread', isCompleted: false),
   ];
 
   UnmodifiableListView<Task> get tasks {
@@ -26,6 +27,11 @@ class TaskData extends ChangeNotifier{
 
   void toggleCompletion(Task task){
     task.toggleCompleted();
+    notifyListeners();
+  }
+
+  void deleteTask(int index){
+    _tasks.removeAt(index);
     notifyListeners();
   }
 }
