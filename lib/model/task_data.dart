@@ -12,7 +12,7 @@ class TaskData extends ChangeNotifier{
   ];
 
   UnmodifiableListView<Task> get tasks {
-    return _tasks;
+    return UnmodifiableListView(_tasks);
   }
 
   int get numberOfTasks{
@@ -20,8 +20,12 @@ class TaskData extends ChangeNotifier{
   }
 
   void addTask(Task task){
-    print('new ${task.taskName}');
     _tasks.add(task);
+    notifyListeners();
+  }
+
+  void toggleCompletion(Task task){
+    task.toggleCompleted();
     notifyListeners();
   }
 }
