@@ -19,10 +19,48 @@ class TasksList extends StatelessWidget {
                     data.toggleCompletion(task);
                 },
                 longPressCallback: (){
-                  data.deleteTask(index);
+                  _showConfirmationDialog(context, data, index);
                 },);
           },
           itemCount: data.numberOfTasks,
+        );
+      },
+    );
+  }
+
+  void _showConfirmationDialog(BuildContext context, TaskData data, int index) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Delete"),
+          content: new Text("Do you want to delete?"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              color: Colors.teal,
+              child: new Text("Yes",
+              style: TextStyle(
+                color: Colors.white
+              ),),
+              onPressed: () {
+                data.deleteTask(index);
+                Navigator.of(context).pop();
+              },
+            ),
+            new FlatButton(
+              color: Colors.teal,
+              child: new Text("No",
+                style: TextStyle(
+                    color: Colors.white
+                ),),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
         );
       },
     );
